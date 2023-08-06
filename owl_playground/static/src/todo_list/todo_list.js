@@ -12,16 +12,26 @@ export class TodoList extends Component {
         useAutofocus("todoListInput")
     };
 
-    addTodo(e) {
-        if (e.keyCode === 13 && e.target.value != "") {
+    addTodo(ev) {
+        if (ev.keyCode === 13 && ev.target.value != "") {
             this.todoList.push(
                 {
                     id: this.nextId++,
-                    description: e.target.value,
+                    description: ev.target.value,
                     done: false,
                 }
             );
-            e.target.value = "";
+            ev.target.value = "";
+        };
+    };
+
+
+    toggleTodo(todoId) {
+        const todo = this.todoList.find((todo) => todo.id === todoId);
+        
+
+        if(todo) {
+            todo.done = !todo.done;
         };
     };
 };
